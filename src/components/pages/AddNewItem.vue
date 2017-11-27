@@ -6,11 +6,11 @@
       </b-input-group>
       <b-input-group left="Name">
         <b-form-input v-model="name" :class="{invalid: $v.name.$error}"
-                      placeholder="Enter item name here" @input="$v.name.$touch()"></b-form-input>
+                      placeholder="Enter item name here" @blur="$v.name.$touch()"></b-form-input>
       </b-input-group>
       <b-input-group left="Price: P" right=".00">
         <b-form-input type="number" v-model="price" :class="{invalid: $v.price.$error}"
-                      placeholder="Enter price here" @input="$v.price.$touch()"></b-form-input>
+                      placeholder="Enter price here" @blur="$v.price.$touch()"></b-form-input>
       </b-input-group>
       <b-btn @click="addEntry" :disabled="$v.$invalid">Add</b-btn>
     </div>
