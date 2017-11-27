@@ -1,7 +1,7 @@
 {
-  "name": "EPalengke",
+  "name": "Expenses",
   "version": "1.0.0",
-  "description": "Palengke ng Bayan",
+  "description": "Budget your expenses",
   "author": "Carlo Gino Catapang <carloginocatapang@gmail.com>",
   "private": true,
   "scripts": {
