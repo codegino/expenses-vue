@@ -8,7 +8,7 @@
       <p v-for="(expenses, i) in dailyExpenses.items">{{expenses.name}}: P{{expenses.price}}
         <b-btn @click="removeItem(i, dailyExpenses.items, index)">-</b-btn>
       </p>
-      <h4>Total: {{computeTotalForEachDay(dailyExpenses)}}</h4>
+      <h4>Total: {{computeTotalForEachDay(dailyExpenses.items)}}</h4>
       <hr>
     </template>
     <h3>Grand Total: {{grandTotal}}</h3>
@@ -32,7 +32,7 @@
         let total = 0
 
         for (var i in this.monthlyExpenses) {
-          total += this.computeTotalForEachDay(this.monthlyExpenses[i])
+          total += this.computeTotalForEachDay(this.monthlyExpenses[i].items)
         }
         return total
       }
