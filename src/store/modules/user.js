@@ -10,6 +10,9 @@ const getters = {
   fullName: state => {
     let endearment = state.user.gender === 'M' ? 'Mr.' : 'Ms.'
     return endearment + ' ' + state.user.firstName + ' ' + state.user.lastName
+  },
+  user: state => {
+    return state.user
   }
 }
 

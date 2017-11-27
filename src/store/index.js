@@ -29,9 +29,11 @@ export default new Vuex.Store({
     saveToStorage: context => {
       var storage = window.localStorage
       let data = {
-        'user': context.state.user.user,
-        'expenses': context.state.expenses
+        'user': context.getters['user/user'],
+        'expenses': context.getters['expenses/expenses']
       }
+
+      console.log(data)
 
       storage.setItem('data', JSON.stringify(data))
     }

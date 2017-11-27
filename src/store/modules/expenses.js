@@ -1,5 +1,5 @@
 const state = {
-  expenses: []
+  expenses: {}
 }
 
 const getters = {
@@ -11,9 +11,7 @@ const getters = {
 const mutations = {
   addExpenses: (state, payload) => {
     let id = payload.date.toLocaleDateString()
-    console.log(id)
 
-    console.log(payload)
     if (!state.expenses[id]) {
       state.expenses[id] = []
     }
@@ -22,6 +20,7 @@ const mutations = {
       'price': payload.price
     }
     state.expenses[id].push(item)
+    console.log(state.expenses)
   }
 }
 

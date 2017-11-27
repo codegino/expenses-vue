@@ -35,7 +35,7 @@
         }
 
         this.$store.commit('user/updateUser', user)
-        this.$store.state.expenses = []
+        this.$store.state.expenses.expenses = {}
         this.$store.dispatch('saveToStorage')
         this.$router.replace('/')
       }
