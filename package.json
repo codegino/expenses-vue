@@ -25,6 +25,7 @@
     "vue": "^2.1.0",
     "vue-router": "^3.0",
     "vuejs-datepicker": "^0.9.20",
+    "vuelidate": "^0.6.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

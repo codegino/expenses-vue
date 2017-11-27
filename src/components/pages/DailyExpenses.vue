@@ -11,19 +11,17 @@
     </template>
     <h3>Grand Total: {{grandTotal}}</h3>
     <b-btn @click="showModal(new Date())">Add</b-btn>
-    <b-modal ref="myModalRef" id="addDataModal" title="Enter something" @ok="addEntry" ok-only>
-      <add-new-item></add-new-item>
+    <b-modal ref="myModalRef" id="addDataModal" title="Enter something" @hide="cancel" hide-footer>
+      <add-new-item @close-modal="closeModal"></add-new-item>
     </b-modal>
   </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
   import AddNewItem from 'src/components/pages/AddNewItem.vue'
 
   export default{
     computed: {
-      ...mapGetters('newItem', ['name', 'date', 'price']),
       monthlyExpenses () {
         return this.$store.getters['expenses/expenses']
       },
@@ -41,9 +39,12 @@
     },
     methods: {
       showModal (date) {
-        console.log(date)
         this.$store.commit('newItem/date', date)
         this.$refs.myModalRef.show()
+      },
+      closeModal () {
+        this.$forceUpdate()
+        this.$refs.myModalRef.hide()
       },
       computeTotalForEachDay (expenses) {
         let total = 0
@@ -52,16 +53,8 @@
         }
         return total
       },
-      addEntry () {
-        let newItem = {
-          name: this.name,
-          date: this.date,
-          price: this.price
-        }
-        this.$store.dispatch('expenses/addData', newItem)
-        this.$store.dispatch('saveToStorage')
+      cancel () {
         this.$store.dispatch('newItem/resetData')
-        this.$forceUpdate()
       }
     }
   }
