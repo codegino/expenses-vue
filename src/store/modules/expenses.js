@@ -1,5 +1,5 @@
 const state = {
-  expenses: {}
+  expenses: []
 }
 
 const getters = {
@@ -12,14 +12,27 @@ const mutations = {
   addExpenses: (state, payload) => {
     let id = payload.date.toLocaleDateString()
 
-    if (!state.expenses[id]) {
-      state.expenses[id] = []
+    let contains = false
+
+    for (var i in state.expenses) {
+      if (state.expenses[i].id === id) {
+        break
+      }
     }
+
     let item = {
       'name': payload.name,
       'price': payload.price
     }
-    state.expenses[id].push(item)
+
+    if (!contains) {
+      state.expenses.push({
+        'id': id,
+        items: [item]
+      })
+    } else {
+      state.expenses[id].items.push(item)
+    }
   }
 }
 

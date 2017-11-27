@@ -2,11 +2,11 @@
   <div class="container">
     <h1>Expenses</h1>
     <template v-for="(dailyExpenses, index) in monthlyExpenses">
-      <h5 class="glyphicon-plus-sign" v-if="dailyExpenses.length > 0">{{index}}
-        <b-btn @click="showModal(new Date(index))">+</b-btn>
+      <h5 class="glyphicon-plus-sign">{{dailyExpenses.id}}
+        <b-btn @click="showModal(new Date(dailyExpenses.id))">+</b-btn>
       </h5>
-      <p v-for="(expenses, i) in dailyExpenses">{{expenses.name}}: P{{expenses.price}}
-        <b-btn @click="removeItem(i, dailyExpenses, index)">-</b-btn>
+      <p v-for="(expenses, i) in dailyExpenses.items">{{expenses.name}}: P{{expenses.price}}
+        <b-btn @click="removeItem(i, dailyExpenses.items, index)">-</b-btn>
       </p>
       <h4>Total: {{computeTotalForEachDay(dailyExpenses)}}</h4>
       <hr>
@@ -25,6 +25,7 @@
   export default{
     computed: {
       monthlyExpenses () {
+        console.log(this.$store.getters['expenses/expenses'])
         return this.$store.getters['expenses/expenses']
       },
       grandTotal () {
@@ -61,7 +62,7 @@
       removeItem (dailyIndex, dailyExpenses, index) {
         dailyExpenses.splice(dailyIndex, 1)
         if (dailyExpenses.length === 0) {
-          delete this.monthlyExpenses[index]
+          this.monthlyExpenses.splice(index, 1)
         }
         this.$store.dispatch('saveToStorage')
         this.$forceUpdate()
