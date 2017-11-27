@@ -2,10 +2,12 @@
   <div class="container">
     <h1>Expenses</h1>
     <template v-for="(dailyExpenses, index) in monthlyExpenses">
-      <h5 class="glyphicon-plus-sign">{{index}}
-        <a href="#"><span @click="showModal(new Date(index))">+</span></a>
+      <h5 class="glyphicon-plus-sign" v-if="dailyExpenses.length > 0">{{index}}
+        <b-btn @click="showModal(new Date(index))">+</b-btn>
       </h5>
-      <p v-for="expenses in dailyExpenses">{{expenses.name}}: P{{expenses.price}}</p>
+      <p v-for="(expenses, i) in dailyExpenses">{{expenses.name}}: P{{expenses.price}}
+        <b-btn @click="removeItem(i, dailyExpenses, index)">-</b-btn>
+      </p>
       <h4>Total: {{computeTotalForEachDay(dailyExpenses)}}</h4>
       <hr>
     </template>
@@ -55,6 +57,14 @@
       },
       cancel () {
         this.$store.dispatch('newItem/resetData')
+      },
+      removeItem (dailyIndex, dailyExpenses, index) {
+        dailyExpenses.splice(dailyIndex, 1)
+        if (dailyExpenses.length === 0) {
+          delete this.monthlyExpenses[index]
+        }
+        this.$store.dispatch('saveToStorage')
+        this.$forceUpdate()
       }
     }
   }
