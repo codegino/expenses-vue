@@ -21,15 +21,17 @@ const mutations = {
 
     let contains = false
 
-    for (var i in state.expenses) {
-      if (state.expenses[i].id === id) {
-        break
-      }
-    }
-
     let item = {
       'name': payload.name,
       'price': payload.price
+    }
+
+    for (var i in state.expenses) {
+      if (state.expenses[i].id === id) {
+        state.expenses[i].items.push(item)
+        contains = true
+        break
+      }
     }
 
     if (!contains) {
@@ -37,8 +39,6 @@ const mutations = {
         'id': id,
         items: [item]
       })
-    } else {
-      state.expenses[id].items.push(item)
     }
   }
 }

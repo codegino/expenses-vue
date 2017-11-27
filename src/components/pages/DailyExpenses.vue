@@ -25,7 +25,6 @@
   export default{
     computed: {
       monthlyExpenses () {
-        console.log(this.$store.getters['expenses/expenses'])
         return this.$store.getters['expenses/expenses']
       },
       grandTotal () {
