@@ -11,7 +11,6 @@
         <b-form-input v-model="price" placeholder="Enter price here"></b-form-input>
       </b-input-group>
     </div>
-    <h5>{{name}} : {{price}} : {{date}}</h5>
   </div>
 </template>
 

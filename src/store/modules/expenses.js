@@ -20,7 +20,6 @@ const mutations = {
       'price': payload.price
     }
     state.expenses[id].push(item)
-    console.log(state.expenses)
   }
 }
 
