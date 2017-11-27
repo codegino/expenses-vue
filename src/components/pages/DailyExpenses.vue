@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Expenses</h1>
     <template v-for="(dailyExpenses, index) in monthlyExpenses">
-      <h5 class="glyphicon-plus-sign">{{dailyExpenses.id}}
+      <h5 class="glyphicon-plus-sign">{{dailyExpenses.id}} {{toDayString(new Date(dailyExpenses.id).getDay())}}
         <b-btn @click="showModal(new Date(dailyExpenses.id))">+</b-btn>
       </h5>
       <p v-for="(expenses, i) in dailyExpenses.items">{{expenses.name}}: P{{expenses.price}}
@@ -65,6 +65,18 @@
         }
         this.$store.dispatch('saveToStorage')
         this.$forceUpdate()
+      },
+      toDayString (num) {
+        var weekday = new Array(7)
+        weekday[0] = 'Sunday'
+        weekday[1] = 'Monday'
+        weekday[2] = 'Tuesday'
+        weekday[3] = 'Wednesday'
+        weekday[4] = 'Thursday'
+        weekday[5] = 'Friday'
+        weekday[6] = 'Saturday'
+
+        return weekday[num]
       }
     }
   }
