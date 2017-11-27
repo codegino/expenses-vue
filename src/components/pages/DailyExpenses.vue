@@ -1,17 +1,31 @@
 <template>
   <div class="container">
-    <h1>Expenses</h1>
+    <h1>
+        Expenses
+    </h1>
+    <hr>
     <template v-for="(dailyExpenses, index) in monthlyExpenses">
-      <h5 class="glyphicon-plus-sign">{{dailyExpenses.id}} {{toDayString(new Date(dailyExpenses.id).getDay())}}
-        <b-btn @click="showModal(new Date(dailyExpenses.id))">+</b-btn>
-      </h5>
-      <p v-for="(expenses, i) in dailyExpenses.items">{{expenses.name}}: P{{expenses.price}}
-        <b-btn @click="removeItem(i, dailyExpenses.items, index)">-</b-btn>
-      </p>
+      <h4>
+        <b-badge variant="light" class="glyphicon-plus-sign"> {{ new Date(dailyExpenses.id).toDateString() }}
+          <b-btn variant="success" @click="showModal(new Date(dailyExpenses.id))">+</b-btn>
+        </b-badge>
+      </h4>
+      <template  v-for="(expenses, i) in dailyExpenses.items">
+        <h6>
+        <b-badge variant="light">{{expenses.name}}: P{{expenses.price}}
+          <b-btn variant="danger" @click="removeItem(i, dailyExpenses.items, index)">-</b-btn>
+        </b-badge>
+        </h6>
+      </template>
       <h4>Total: {{computeTotalForEachDay(dailyExpenses.items)}}</h4>
       <hr>
     </template>
-    <h3>Grand Total: {{grandTotal}}</h3>
+    <h2 id="grandTotal">
+      <b-badge>
+        Grand Total: {{grandTotal}}
+      </b-badge>
+    </h2>
+    <hr>
     <b-btn @click="showModal(new Date())">Add</b-btn>
     <b-modal ref="myModalRef" id="addDataModal" title="Enter something" @hide="cancel" hide-footer>
       <add-new-item @close-modal="closeModal"></add-new-item>
@@ -81,3 +95,9 @@
     }
   }
 </script>
+
+<style>
+  #grandTotal{
+    padding-bottom: 15px;
+  }
+</style>
