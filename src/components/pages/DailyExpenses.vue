@@ -45,8 +45,8 @@
         this.$refs.myModalRef.show()
       },
       closeModal () {
-        this.$forceUpdate()
         this.$refs.myModalRef.hide()
+        this.$forceUpdate()
       },
       computeTotalForEachDay (expenses) {
         let total = 0
