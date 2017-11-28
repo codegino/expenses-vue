@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import axios from 'axios'
+
 import user from './modules/user.js'
 import newItem from './modules/newItem.js'
 import expenses from './modules/expenses.js'
@@ -33,9 +35,29 @@ export default new Vuex.Store({
         'expenses': context.getters['expenses/expenses']
       }
 
-      console.log(data)
-
       storage.setItem('data', JSON.stringify(data))
+    },
+    saveToRemote: (context, successCallback) => {
+      let data = {
+        'user': context.getters['user/user'],
+        'expenses': context.getters['expenses/expenses']
+      }
+
+      axios.put('https://gihooh-expenses.firebaseio.com/gihooh.json', data)
+        .then(res => {
+          context.dispatch('saveToStorage')
+          successCallback()
+        }, error => console.log(error))
+    },
+    retrieveFromRemote: (context, successCallback) => {
+      axios.get('https://gihooh-expenses.firebaseio.com/gihooh.json')
+        .then(res => {
+          context.commit('expenses/expenses', res.data.expenses)
+          context.commit('user/updateUser', res.data.user)
+          context.dispatch('saveToStorage')
+          successCallback()
+        })
+        .catch(error => console.log(error))
     }
   }
 })

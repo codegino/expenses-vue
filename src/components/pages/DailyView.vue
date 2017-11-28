@@ -10,8 +10,14 @@
         <button class="btn btn-primary" variant="success" @click="showModal(new Date(date))">+</button>
       </div>
     </div>
+    <transition-group
+      name="custom-classes-transition"
+      enter-active-class="animated bounceInDown"
+      leave-active-class="animated bounceOutUp"
+      move-class="{transition: transform 1s}"
+    >
     <template class="items" v-for="item in items" v-if="itemShown">
-      <div class="row item-container">
+      <div class="row item-container" :key="item.name">
         <span class="item">
           <h5>{{item.name}} </h5>
         </span>
@@ -20,6 +26,7 @@
         </span>
       </div>
     </template>
+    </transition-group>
     <b-modal :ref="addItemModal" title="Enter something" @hide="cancel" hide-footer>
       <add-new-item @close-modal="closeModal"></add-new-item>
     </b-modal>

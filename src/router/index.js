@@ -6,6 +6,7 @@ import ExpensesMain from 'src/components/pages/AllExpenses.vue'
 import MonthlyView from 'src/components/pages/MonthlyView.vue'
 import Login from 'src/components/pages/Login.vue'
 import SignUp from 'src/components/pages/Signup.vue'
+import ManageData from 'src/components/pages/ManageData.vue'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/signUp',
     name: 'Sign up',
     component: SignUp
+  },
+  {
+    path: '/manageData',
+    name: 'Manage Data',
+    component: ManageData
   }
 ]
 

@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'animate.css/animate.css'
 
 import Vue from 'vue'
 import router from 'src/router'

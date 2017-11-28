@@ -34,6 +34,9 @@ const mutations = {
     console.log(payload)
     state.selectedDate = payload
   },
+  expenses: (state, payload) => {
+    state.expenses = payload
+  },
   addExpenses: (state, payload) => {
     let id = payload.date.toLocaleDateString()
 

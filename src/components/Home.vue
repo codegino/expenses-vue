@@ -8,6 +8,9 @@
       <div class="col-xs-4 col-md-4">
         <router-link to="/monthlyVIew">Monthly View</router-link>
       </div>
+      <div class="col-xs-4 col-md-4">
+        <router-link to="/manageData">Manage Data</router-link>
+      </div>
     </div>
     <div class="row">
       <div class="col-xs-12">

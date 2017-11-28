@@ -2,9 +2,9 @@
   <div class="container">
     <h2>Select Month</h2><datepicker  v-model="displayedDate" class="col-xs-8" minimum-view="month" maximum-view="month"></datepicker>
     <hr>
-    <template v-for="dailyExpenses in expenses">
-        <daily-expenses :date="dailyExpenses.id" :items="dailyExpenses.items"></daily-expenses>
-    </template>
+      <template v-for="dailyExpenses in expenses">
+          <daily-expenses :date="dailyExpenses.id" :items="dailyExpenses.items" :id="dailyExpenses"></daily-expenses>
+      </template>
     <b-modal :ref="addItemModal" title="Enter something" @hide="cancel" hide-footer>
       <add-new-item @close-modal="closeModal"></add-new-item>
     </b-modal>
