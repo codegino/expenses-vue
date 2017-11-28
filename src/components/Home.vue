@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-4 col-md-4">
-        <router-link to="/expenses">Go to Expenses</router-link>
+        <router-link to="/expenses">Go to all expenses</router-link>
       </div>
       <div class="col-xs-4 col-md-4">
         <router-link to="/monthlyVIew">Monthly View</router-link>
