@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from 'src/components/Home.vue'
-import ExpensesMain from 'src/components/pages/DailyExpenses.vue'
+import ExpensesMain from 'src/components/pages/AllExpenses.vue'
 import MonthlyView from 'src/components/pages/MonthlyView.vue'
 import Login from 'src/components/pages/Login.vue'
 import SignUp from 'src/components/pages/Signup.vue'
