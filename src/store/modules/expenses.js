@@ -18,14 +18,14 @@ const getters = {
     return state.selectedDate
   },
   monthlyExpenses: state => {
-    var newArray = state.expenses.filter(function (el) {
+    var expenses = state.expenses.filter(function (el) {
       let elDayMonthYear = el.id.split('/')
       let stateDayMongthYear = state.selectedDate.toLocaleDateString().split('/')
 
       return elDayMonthYear[0] === stateDayMongthYear[0] && elDayMonthYear[2] === stateDayMongthYear[2]
     })
-    console.log(newArray)
-    return newArray
+
+    return expenses
   }
 }
 

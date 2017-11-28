@@ -27,7 +27,7 @@
     </h2>
     <hr>
     <b-btn @click="showModal(new Date())">Add</b-btn>
-    <b-modal ref="myModalRef" id="addDataModal" title="Enter something" @hide="cancel" hide-footer>
+    <b-modal :ref="addItemModal" title="Enter something" @hide="cancel" hide-footer>
       <add-new-item @close-modal="closeModal"></add-new-item>
     </b-modal>
   </div>
@@ -35,6 +35,9 @@
 
 <script>
   import AddNewItem from 'src/components/pages/AddNewItem.vue'
+  import {computer} from 'src/mixins/computer'
+  import {remover} from 'src/mixins/itemRemover'
+  import {addItemUsingModal} from 'src/mixins/addItemUsingModal'
 
   export default{
     computed: {
@@ -53,46 +56,7 @@
     components: {
       AddNewItem
     },
-    methods: {
-      showModal (date) {
-        this.$store.commit('newItem/date', date)
-        this.$refs.myModalRef.show()
-      },
-      closeModal () {
-        this.$refs.myModalRef.hide()
-        this.$forceUpdate()
-      },
-      computeTotalForEachDay (expenses) {
-        let total = 0
-        for (let i = 0; i < expenses.length; i++) {
-          total += parseInt(expenses[i].price)
-        }
-        return total
-      },
-      cancel () {
-        this.$store.dispatch('newItem/resetData')
-      },
-      removeItem (dailyIndex, dailyExpenses, index) {
-        dailyExpenses.splice(dailyIndex, 1)
-        if (dailyExpenses.length === 0) {
-          this.monthlyExpenses.splice(index, 1)
-        }
-        this.$store.dispatch('saveToStorage')
-        this.$forceUpdate()
-      },
-      toDayString (num) {
-        var weekday = new Array(7)
-        weekday[0] = 'Sunday'
-        weekday[1] = 'Monday'
-        weekday[2] = 'Tuesday'
-        weekday[3] = 'Wednesday'
-        weekday[4] = 'Thursday'
-        weekday[5] = 'Friday'
-        weekday[6] = 'Saturday'
-
-        return weekday[num]
-      }
-    }
+    mixins: [computer, remover, addItemUsingModal]
   }
 </script>
 
