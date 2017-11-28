@@ -6,8 +6,8 @@ const state = {
 const getters = {
   expenses: state => {
     function compare (a, b) {
-      if (new Date(a.id) < new Date(b.id)) { return -1 }
-      if (new Date(a.id) > new Date(b.id)) { return 1 }
+      if (new Date(a.id) > new Date(b.id)) { return -1 }
+      if (new Date(a.id) < new Date(b.id)) { return 1 }
       return 0
     }
 

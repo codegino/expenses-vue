@@ -21,8 +21,6 @@
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-vue": "^1.2.0",
-    "cordova-android": "^6.3.0",
-    "cordova-browser": "^5.0.1",
     "cordova-plugin-datepicker": "git+https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
     "cordova-plugin-whitelist": "1",
     "vue": "^2.1.0",
@@ -103,9 +101,6 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-datepicker": {}
     },
-    "platforms": [
-      "android",
-      "browser"
-    ]
+    "platforms": []
   }
 }
