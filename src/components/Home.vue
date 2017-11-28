@@ -6,10 +6,7 @@
         <router-link to="/expenses">Go to Expenses</router-link>
       </div>
       <div class="col-xs-4 col-md-4">
-        <router-link to="/login">Go to Login</router-link>
-      </div>
-      <div class="col-xs-4 col-md-4">
-        <router-link to="/signUp">Sign up</router-link>
+        <router-link to="/monthlyVIew">Monthly View</router-link>
       </div>
     </div>
     <div class="row">

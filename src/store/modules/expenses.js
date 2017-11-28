@@ -1,4 +1,5 @@
 const state = {
+  selectedDate: new Date(),
   expenses: []
 }
 
@@ -12,10 +13,27 @@ const getters = {
 
     state.expenses.sort(compare)
     return state.expenses
+  },
+  selectedDate: state => {
+    return state.selectedDate
+  },
+  monthlyExpenses: state => {
+    var newArray = state.expenses.filter(function (el) {
+      let elDayMonthYear = el.id.split('/')
+      let stateDayMongthYear = state.selectedDate.toLocaleDateString().split('/')
+
+      return elDayMonthYear[0] === stateDayMongthYear[0] && elDayMonthYear[2] === stateDayMongthYear[2]
+    })
+    console.log(newArray)
+    return newArray
   }
 }
 
 const mutations = {
+  selectedDate: (state, payload) => {
+    console.log(payload)
+    state.selectedDate = payload
+  },
   addExpenses: (state, payload) => {
     let id = payload.date.toLocaleDateString()
 

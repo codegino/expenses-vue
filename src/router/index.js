@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from 'src/components/Home.vue'
 import ExpensesMain from 'src/components/pages/DailyExpenses.vue'
+import MonthlyView from 'src/components/pages/MonthlyView.vue'
 import Login from 'src/components/pages/Login.vue'
 import SignUp from 'src/components/pages/Signup.vue'
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/expenses',
     name: 'Expenses Main',
     component: ExpensesMain
+  },
+  {
+    path: '/monthlyView',
+    name: 'Monthly View',
+    component: MonthlyView
   },
   {
     path: '/signUp',
