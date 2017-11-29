@@ -54,8 +54,7 @@
         }
 
         this.$store.dispatch('auth/signUp', data)
-
-//        this.updateUser()
+        this.updateUser()
       },
       updateUser () {
         let user = {
@@ -65,8 +64,8 @@
         }
 
         this.$store.commit('user/updateUser', user)
-        this.$store.state.expenses.expenses = []
-        this.$store.dispatch('saveToStorage')
+        this.$store.commit('expenses/expenses', [])
+        this.$store.dispatch('saveToRemote', () => { console.log('Success') })
         this.$router.replace('/')
       }
     }

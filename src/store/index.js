@@ -40,12 +40,16 @@ export default new Vuex.Store({
       storage.setItem('data', JSON.stringify(data))
     },
     saveToRemote: (context, successCallback) => {
+      const token = context.getters['auth/idToken']
+
       let data = {
         'user': context.getters['user/user'],
         'expenses': context.getters['expenses/expenses']
       }
 
-      axios.put('/gihooh.json', data)
+      console.log(data)
+
+      axios.put('/sample.json?auth=' + token, data)
         .then(res => {
           context.dispatch('saveToStorage')
           successCallback()
@@ -53,7 +57,9 @@ export default new Vuex.Store({
     },
 
     retrieveFromRemote: (context, successCallback) => {
-      axios.get('/gihooh.json')
+      const token = context.getters['auth/idToken']
+
+      axios.get('/sample.json?auth=' + token)
         .then(res => {
           context.commit('expenses/expenses', res.data.expenses)
           context.commit('user/updateUser', res.data.user)
