@@ -18,6 +18,10 @@
       <input class="col-md-2 col-xs-7" type="text" id="username" v-model="username">
     </div>
     <div class="input row">
+      <label class="col-md-1 col-xs-4" for="email">email</label>
+      <input class="col-md-2 col-xs-7" type="text" id="email" v-model="email">
+    </div>
+    <div class="input row">
       <label class="col-md-1 col-xs-4" for="password">password</label>
       <input class="col-md-2 col-xs-7" type="password" id="password" v-model="password">
     </div>
@@ -25,7 +29,7 @@
       <label class="col-md-1 col-xs-4" for="repeat-password">repeat password</label>
       <input class="col-md-2 col-xs-7" type="password" id="repeat-password" v-model="password">
     </div>
-    <button class="btn btn-primary" @click="updateUser">Submit</button>
+    <button class="btn btn-primary" @click="signUp">Sign up</button>
   </div>
 </template>
 
@@ -35,12 +39,23 @@
       return {
         firstName: '',
         lastName: '',
+        email: '',
         gender: '',
         username: '',
         password: ''
       }
     },
     methods: {
+      signUp () {
+        let data = {
+          email: this.email,
+          password: this.password,
+          returnSecureToken: true
+        }
+
+        this.$store.dispatch('signUp', data)
+//        this.updateUser()
+      },
       updateUser () {
         let user = {
           firstName: this.firstName,
