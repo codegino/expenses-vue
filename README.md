@@ -1,6 +1,6 @@
-# f7
+# Expenses - Track your expenses using this app
 
-> A Vue.js project
+> A Cordova and Vue.js project
 
 ## Build Setup
 
