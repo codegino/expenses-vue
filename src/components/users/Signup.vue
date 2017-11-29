@@ -13,6 +13,18 @@
         <label class="col-md-1 col-xs-4" for="gender">gender</label>
         <input class="col-md-1 col-xs-7" type="text" id="gender" v-model="gender">
     </div>
+    <div class="input row">
+      <label class="col-md-1 col-xs-4" for="username">username</label>
+      <input class="col-md-2 col-xs-7" type="text" id="username" v-model="username">
+    </div>
+    <div class="input row">
+      <label class="col-md-1 col-xs-4" for="password">password</label>
+      <input class="col-md-2 col-xs-7" type="password" id="password" v-model="password">
+    </div>
+    <div class="input row">
+      <label class="col-md-1 col-xs-4" for="repeat-password">repeat password</label>
+      <input class="col-md-2 col-xs-7" type="password" id="repeat-password" v-model="password">
+    </div>
     <button class="btn btn-primary" @click="updateUser">Submit</button>
   </div>
 </template>
@@ -23,7 +35,9 @@
       return {
         firstName: '',
         lastName: '',
-        gender: ''
+        gender: '',
+        username: '',
+        password: ''
       }
     },
     methods: {

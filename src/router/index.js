@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import Home from 'src/components/Home.vue'
 import ExpensesMain from 'src/components/pages/AllExpenses.vue'
 import MonthlyView from 'src/components/pages/MonthlyView.vue'
-import Login from 'src/components/pages/Login.vue'
-import SignUp from 'src/components/pages/Signup.vue'
+import Login from 'src/components/users/Login.vue'
+import SignUp from 'src/components/users/Signup.vue'
 import ManageData from 'src/components/pages/ManageData.vue'
 
 const routes = [

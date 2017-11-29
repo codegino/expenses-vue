@@ -43,14 +43,14 @@ export default new Vuex.Store({
         'expenses': context.getters['expenses/expenses']
       }
 
-      axios.put('https://gihooh-expenses.firebaseio.com/gihooh.json', data)
+      axios.put('/gihooh.json', data)
         .then(res => {
           context.dispatch('saveToStorage')
           successCallback()
         }, error => console.log(error))
     },
     retrieveFromRemote: (context, successCallback) => {
-      axios.get('https://gihooh-expenses.firebaseio.com/gihooh.json')
+      axios.get('/gihooh.json')
         .then(res => {
           context.commit('expenses/expenses', res.data.expenses)
           context.commit('user/updateUser', res.data.user)
