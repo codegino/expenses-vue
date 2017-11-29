@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import axios from 'axios'
-import axiosAuth from 'src/axios-auth'
 
 import user from './modules/user.js'
 import newItem from './modules/newItem.js'
 import expenses from './modules/expenses.js'
+import auth from './modules/auth.js'
 
 Vue.use(Vuex)
 
@@ -14,7 +14,8 @@ export default new Vuex.Store({
   modules: {
     expenses,
     user,
-    newItem
+    newItem,
+    auth
   },
   actions: {
     loadData: (context, router) => {
@@ -50,19 +51,7 @@ export default new Vuex.Store({
           successCallback()
         }, error => console.log(error))
     },
-    signUp: (context, payload) => {
-      let data = {
-        email: payload.email,
-        password: payload.password,
-        returnSecureToken: true
-      }
-      console.log('gino')
 
-      axiosAuth.post('/signupNewUser?key=AIzaSyCh5zuKIKE8HLYLtxUixfonrqDGvWyOzXA', data)
-        .then(res => {
-          console.log(res)
-        }, error => console.log(error))
-    },
     retrieveFromRemote: (context, successCallback) => {
       axios.get('/gihooh.json')
         .then(res => {

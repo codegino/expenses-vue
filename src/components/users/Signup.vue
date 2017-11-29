@@ -53,7 +53,8 @@
           returnSecureToken: true
         }
 
-        this.$store.dispatch('signUp', data)
+        this.$store.dispatch('auth/signUp', data)
+
 //        this.updateUser()
       },
       updateUser () {
