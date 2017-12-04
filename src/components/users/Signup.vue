@@ -53,14 +53,19 @@
           returnSecureToken: true
         }
 
-        this.$store.dispatch('auth/signUp', data)
-        this.updateUser()
+        let callback = () => {
+          this.updateUser()
+        }
+
+        this.$store.dispatch('auth/signUp', {data, callback})
       },
       updateUser () {
         let user = {
           firstName: this.firstName,
           lastName: this.lastName,
-          gender: this.gender
+          gender: this.gender,
+          email: this.email,
+          username: this.username
         }
 
         this.$store.commit('user/updateUser', user)

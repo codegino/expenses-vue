@@ -25,16 +25,20 @@ export default new Vuex.Store({
 
       if (data) {
         context.state.user.user = data.user
+        context.state.auth.idToken = data.idToken
+        context.state.auth.userId = data.userId
         context.state.expenses.expenses = data.expenses
       } else {
-        router.replace('/signUp')
+        router.replace('/login')
       }
     },
     saveToStorage: context => {
       var storage = window.localStorage
       let data = {
         'user': context.getters['user/user'],
-        'expenses': context.getters['expenses/expenses']
+        'expenses': context.getters['expenses/expenses'],
+        'userId': context.getters['auth/userId'],
+        'idToken': context.getters['auth/idToken']
       }
 
       storage.setItem('data', JSON.stringify(data))
@@ -42,6 +46,7 @@ export default new Vuex.Store({
     saveToRemote: (context, successCallback) => {
       const token = context.getters['auth/idToken']
 
+      console.log(token)
       let data = {
         'user': context.getters['user/user'],
         'expenses': context.getters['expenses/expenses']
@@ -49,7 +54,7 @@ export default new Vuex.Store({
 
       console.log(data)
 
-      axios.put('/sample.json?auth=' + token, data)
+      axios.put('/gihooh.json?auth=' + token, data)
         .then(res => {
           context.dispatch('saveToStorage')
           successCallback()
@@ -58,12 +63,12 @@ export default new Vuex.Store({
 
     retrieveFromRemote: (context, successCallback) => {
       const token = context.getters['auth/idToken']
+      console.log(token)
 
-      axios.get('/sample.json?auth=' + token)
+      axios.get('/gihooh.json?auth=' + token)
         .then(res => {
           context.commit('expenses/expenses', res.data.expenses)
           context.commit('user/updateUser', res.data.user)
-          context.dispatch('saveToStorage')
           successCallback()
         })
         .catch(error => console.log(error))

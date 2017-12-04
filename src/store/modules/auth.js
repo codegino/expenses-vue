@@ -8,6 +8,9 @@ const state = {
 const getters = {
   idToken (state) {
     return state.idToken
+  },
+  userId (state) {
+    return state.userId
   }
 }
 
@@ -19,24 +22,25 @@ const mutations = {
 }
 
 const actions = {
-  signUp ({commit}, authData) {
-    axios.post('/signupNewUser?key=AIzaSyCh5zuKIKE8HLYLtxUixfonrqDGvWyOzXA', authData)
+  signUp ({commit, dispatch}, auth) {
+    axios.post('/signupNewUser?key=AIzaSyCh5zuKIKE8HLYLtxUixfonrqDGvWyOzXA', auth.data)
       .then(res => {
         commit('authUser', {
           token: res.data.idToken,
           userId: res.data.localId
         })
-        console.log(res)
+        dispatch('login', {data: auth.data, callback: () => {}})
+        auth.callback()
       }, error => console.log(error))
   },
-  login ({commit}, authData) {
-    axios.post('/verifyPassword?key=AIzaSyCh5zuKIKE8HLYLtxUixfonrqDGvWyOzXA', authData)
+  login ({commit}, auth) {
+    axios.post('/verifyPassword?key=AIzaSyCh5zuKIKE8HLYLtxUixfonrqDGvWyOzXA', auth.data)
       .then(res => {
         commit('authUser', {
           token: res.data.idToken,
           userId: res.data.localId
         })
-        console.log(res)
+        auth.callback()
       }, error => console.log(error))
   }
 }

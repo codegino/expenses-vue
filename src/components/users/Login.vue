@@ -33,9 +33,22 @@ export default {
         password: this.password
       }
 
-      console.log(data)
+      console.log('before')
+      console.log(this.$store.getters['auth/idToken'])
+      console.log(this.$store.getters['auth/userId'])
+      console.log('before')
 
-      this.$store.dispatch('auth/login', data)
+      let callback = () => {
+        this.$store.dispatch('retrieveFromRemote', () => {})
+        this.$store.dispatch('saveToStorage', () => {})
+        this.$router.replace('/')
+        console.log('after')
+        console.log(this.$store.getters['auth/idToken'])
+        console.log(this.$store.getters['auth/userId'])
+        console.log('after')
+      }
+
+      this.$store.dispatch('auth/login', {data, callback})
     }
   }
 }

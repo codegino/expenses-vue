@@ -2,7 +2,9 @@ const state = {
   user: {
     firstName: '',
     lastName: '',
-    gender: ''
+    gender: '',
+    email: '',
+    username: ''
   }
 }
 
@@ -21,6 +23,8 @@ const mutations = {
     state.user.firstName = payload.firstName
     state.user.lastName = payload.lastName
     state.user.gender = payload.gender
+    state.user.email = payload.email
+    state.user.username = payload.username
   }
 }
 
