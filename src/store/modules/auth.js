@@ -42,6 +42,12 @@ const actions = {
         })
         auth.callback()
       }, error => console.log(error))
+  },
+  clearData: ({commit}) => {
+    commit('authUser', {
+      token: null,
+      userId: null
+    })
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="signin">
+  <div id="signin" class="container">
     <div class="signin-form">
       <form @submit.prevent="onSubmit">
         <div class="input">
@@ -11,9 +11,13 @@
           <input type="password" id="password" v-model="password">
         </div>
         <div class="submit">
-          <button type="submit">Submit</button>
+          <b-btn type="submit">Submit</b-btn>
         </div>
       </form>
+      <hr>
+    </div>
+    <div class="col-xs-3 col-md-3">
+      <b-btn @click="signUp">Sign up</b-btn>
     </div>
   </div>
 </template>
@@ -40,6 +44,9 @@ export default {
       }
 
       this.$store.dispatch('auth/login', {data, callback})
+    },
+    signUp () {
+      this.$router.replace('/signUp')
     }
   }
 }

@@ -67,6 +67,9 @@ const mutations = {
 const actions = {
   addData: (context, payload) => {
     context.commit('addExpenses', payload)
+  },
+  clearData: ({commit}) => {
+    commit('expenses', [])
   }
 }
 

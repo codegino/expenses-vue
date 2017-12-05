@@ -28,9 +28,23 @@ const mutations = {
   }
 }
 
+const actions = {
+  clearData: ({commit}) => {
+    let data = {
+      firstName: null,
+      lastName: null,
+      gender: null,
+      email: null,
+      username: null
+    }
+    commit('updateUser', data)
+  }
+}
+
 export default {
   namespaced: true,
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }
