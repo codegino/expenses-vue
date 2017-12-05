@@ -29,7 +29,7 @@ const actions = {
           token: res.data.idToken,
           userId: res.data.localId
         })
-        dispatch('login', {data: auth.data, callback: () => {}})
+        dispatch('login', {data: auth.data, callback: () => { console.log('login success') }})
         auth.callback()
       }, error => console.log(error))
   },
